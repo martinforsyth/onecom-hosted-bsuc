@@ -1,0 +1,44 @@
+This page is for testing purposes only. It is hosted on the same server as our web site.
+
+Although everything on the page is publically visible, it can only be seen by those who either manually type in the page address or have been given the link to it. It is not linked to any of our website pages and it is therefore very unlikey that anyone browsing our site will stumble onto it. Nevertheless, if you do make changes, please be sensitive to exposing sensitive information.
+
+The calendar shown is an embedded, publically visible google calendar belong to the shaftesburyuc@gmail google account. More details on how to edit it below.
+
+The intention eventually is to use it to store all the publically available event related information currently found in notices, clanger, emails etc.
+
+To support those who either cannot or do not want to access an online calendar, there is a tool for extracting information between two user selected dates into a text document. Whoever puts together the more traditional notices/clanger etc could use such a tool, then integrate its output with those documents.  
+
+Please explore the calendar.
+
+
+For those that just want to look at it ...
+
+
+For those that want to add/delete/edit events ...
+There are two ways of doing this, either directly or indirectly via google accounts.
+
+Brief diversion into what a google account is ...
+
+You can find out more online, but for the purposes of this description, a google account is a collection of google apps, docs, information and storage all associated with a single set of credentials. Typically those credentials are a GMail address and a password. For example, a google account holder has their own private access to emails managed by the GMail app, videos managed by the YouTube app, pictures managed by the Photos app, maps managed by the Maps app, online storage managed by the Drive app, documents managed by the Docs app, contact details managed by the Contacts app and lots more. I'm not sure that this is widely understood. It seems to me that a number of people with a GMail account do not appreciate that they also have access to all these other services in their own private google account.
+
+ The relevant app for this experiment is called the Calendar app. It would be better named the Calendars app IMO, because it can manage/display multiple calendars simultaneously overlaid on a configurable date/time grid. An important feature is the ability for a calendar owned by one google account to be shared with editing permissions to another google account.
+
+To edit the calendar below either .....
+
+1. If you have your own google account - which you do if you have a Gmail address - ask Martin to share this calendar with yours, so that you can edit it using the calendar app when logged into your own account.
+
+2. If you don't have a google account -  which you do not if you don't have a Gmail address - ask Martin for the credentials of the google account that owns this calendar. Then you can login to the account and edit the calendar using the Calendar app. If you do it this way then bear in mind that you are sharing access to a single google account with others. Anything you do, create, store while logged in to the account will be visible to others who log in. The 'safest' way to manage this is to logout of the google account when you are finished. Also, while logged in, avoid agreeing to sync the data, such as that stored in your browser, with the account.
+
+
+
+
+
+including bookmarks, history, saved passwords etc
+
+
+
+
+including browser history and passwords  
+
+
+

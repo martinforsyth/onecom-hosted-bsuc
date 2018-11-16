@@ -1,0 +1,5 @@
+# This whole file was added to this dir by martinf
+# See onecom 'how can i disable the varnish cache' at ...
+# https://help.one.com/hc/en-us/articles/115005586269
+
+Header add "disablevcache" "true"
