@@ -1,0 +1,99 @@
+<!-- http://www.daterangepicker.com/ - input initially empty with more options -->
+
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <body>
+    <!-- <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;src=isois1i64040mf5ceiukpabt88%40group.calendar.google.com&amp;color=%235229A3&amp;ctz=Europe%2FLondon" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"> -->
+			<!-- </iframe> -->
+		<iframe src="https://calendar.google.com/calendar/embed?title=Dummy%20calendar%20to%20play%2Ftest%20with&amp;height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=shaftesburyuc%40gmail.com&amp;color=%231B887A&amp;ctz=Europe%2FLondon" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+
+    <!-- Create html form element to get date range then submit that to web app script to generate textual events sheet -->
+
+
+    
+    <!-- daterangepicker popup start -->
+    <!-- <form action="action_page.php" method="post" autocomplete="off"> -->
+    <form action="action_page.php" method="post">
+      <br/>Pick a date range for events<br/>
+      <input type="text" name="datefilter" value="" />
+      <br><br>
+      <br/>Generate events document<br/>
+      <input type="submit" value="Submit">
+    </form>
+
+    
+
+    <script type="text/javascript">
+      $(function() {
+
+          // for how to configure the daterangepicker, see configuration generator at http://www.daterangepicker.com/
+          $('input[name="datefilter"]').daterangepicker({
+              autoUpdateInput: false,
+              locale: {
+                  cancelLabel : 'Clear',
+                  format      : 'DD/MM/YYYY',
+                  firstDay    : 1 //Mon
+              }
+          });
+
+          $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+              $(this).val(picker.startDate.format('DD/MM/YYYY') + ' to ' + picker.endDate.format('DD/MM/YYYY'));
+          });
+
+          $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+              $(this).val('');
+          });
+
+      });
+    </script>
+    <!-- daterangepicker popup end -->
+
+    <!-- daterangepicker inline start -->
+    <!-- <form action="action_page.php" method="post" autocomplete="off"> -->
+      <!--   <br/>Pick a date range for the calendar events<br/> -->
+      <!--   <input type="text" name="datefilter" value="" /> -->
+      <!--   <div id="mydiv"></div> -->
+      <!--   <br><br> -->
+      <!--   <br/>Generate calendar events document<br/> -->
+      <!--   <input type="submit" value="Submit"> -->
+      <!-- </form>  -->
+
+    <!-- <script type="text/javascript"> -->
+      <!--   $(function() { -->
+
+      <!--       // for how to configure the daterangepicker, see configuration generator at http://www.daterangepicker.com/  -->
+      <!--       $('#mydiv').daterangepicker({ -->
+      <!--           autoUpdateInput: false, -->
+      <!--           locale: { -->
+      <!--               cancelLabel : 'Clear', -->
+      <!--               format      : 'DD/MM/YYYY', -->
+      <!--               firstDay    : 1 //Mon -->
+      <!--           } -->
+      <!--       }); -->
+
+      <!--       $('#mydiv').on('apply.daterangepicker', function(ev, picker) { -->
+      <!--           $(this).val(picker.startDate.format('DD/MM/YYYY') + ' to ' + picker.endDate.format('DD/MM/YYYY')); -->
+      <!--       }); -->
+
+      <!--       $('#mydiv').on('cancel.daterangepicker', function(ev, picker) { -->
+      <!--           $(this).val(''); -->
+      <!--       }); -->
+
+      <!--   }); -->
+      <!-- </script> -->
+    <!-- daterangepicker inline end -->
+
+
+
+
+    
+    
+  </body>
+</html>
+
