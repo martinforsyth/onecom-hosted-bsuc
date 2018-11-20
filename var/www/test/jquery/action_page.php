@@ -8,9 +8,6 @@ Passing date range <?php echo htmlspecialchars($_POST['datefilter']); ?> to goog
 // getcalendarevents project in shaftesburyuc@gmail.com scripts account
 $url = 'https://script.google.com/macros/s/AKfycbw6U9HbKGRMxYWtl1omIUdSaL4jCOInH56JBqLOwwAod4IkbP18/exec?daterange=' . urlencode(htmlspecialchars($_POST['datefilter']));
 
-// getcalendarevents project in bsucshaftesbury@gmail.com scripts account
-//$url = 'https://script.google.com/macros/s/AKfycbzti4_uUaGNWAub1_HA6bhQTtMttU8wuVWl6X70oJm5sLUl8yg/exec?daterange=' . urlencode(htmlspecialchars($_POST['datefilter']));
-
 $curl = curl_init();
 
 curl_setopt($curl, CURLOPT_URL, $url);
