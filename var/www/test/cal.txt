@@ -6,7 +6,7 @@ The calendar shown is an embedded, publically visible google calendar belong to 
 
 The intention eventually is to use it to store all the publically available event related information currently found in notices, clanger, emails etc.
 
-To support those who either cannot or do not want to access an online calendar, there is a tool for extracting information between two user selected dates into a text document. Whoever puts together the more traditional notices/clanger etc could use such a tool, then integrate its output with those documents.  
+To support those who either cannot or do not want to access an online calendar, there is a WebApp for extracting information between two user selected dates into a text document. Whoever puts together the more traditional notices/clanger etc could use such a WebApp, then integrate its output with those documents.  
 
 Please explore the calendar.
 

@@ -3,10 +3,13 @@
 
 <!DOCTYPE html>
 <html lang="en-US">
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <head>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../mystyle.css">
+  </head>
   <body>
     <!-- <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;src=isois1i64040mf5ceiukpabt88%40group.calendar.google.com&amp;color=%235229A3&amp;ctz=Europe%2FLondon" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"> -->
       <!-- </iframe> -->
@@ -21,22 +24,34 @@
     <!-- daterangepicker popup start -->
     <!-- <form action="action_page.php" method="post" autocomplete="off"> -->
       <form action="action_page.php" method="post">
-        <br/>Pick a date range for events<br/>
-        <input type="text" name="datefilter" value="" />
-        <br><br>
-        
-        <br/>When generating the details of events ....
+        <h3>step 1</h3>
+        Click in the box then select a date range for events.
+
         <ul>
           <li>
-            You will see a <em>Moved Temporarily</em> notice referring to the document (WebApp). This is a normal part of Google's security procedure to do with protecting the servers on which WebApp code is hosted. You need to follow the link to run the tool.
+            Remember that at the moment, the WebApp only gets events from the shaftesburyuc@gmail.com calender.
           </li>
 
           <li>
-            If you are using a browser that does not support access to Google account services, generally older or more obscure ones, then the tool may not run.
+            Choose <em>Apply</em> to continue or <em>Clear</em> to cancel the selection<br/>
+          </li>
+
+        </ul>
+        
+        <input type="text" name="datefilter" value="" />
+        <h3>step 2</h3>
+        Generate the details of events
+        <ul>
+          <li>
+            You will see a <em>Moved Temporarily</em> notice referring to the document (WebApp). This is a normal part of Google's security procedure to do with protecting the servers on which WebApp code is hosted. You need to follow the link to run the WebApp.
           </li>
 
           <li>
-            When the tool completes it will print some consistency check info and provide a link to the final document. Follow the link to see the result.
+            If you are using a browser that does not support access to Google account services, generally older or more obscure ones, then the WebApp may not run.
+          </li>
+
+          <li>
+            When the WebApp completes it will print some consistency check info and provide a link to the final document. Follow the link to see the result.
           </li>
 
         </ul>

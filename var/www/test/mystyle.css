@@ -1,0 +1,18 @@
+body {
+    /* background-color: lightblue; */
+    /* background-color: bisque; */
+    /* background-color: beige; */
+    /* background-color: wheat; */
+    background-color: palegoldenrod;
+}
+
+h1 {
+    color: navy;
+    /* margin-left: 20px; */
+}
+
+.notice-me {
+    color: red;
+		font-size: 150%;
+    /* margin-left: 20px; */
+}
