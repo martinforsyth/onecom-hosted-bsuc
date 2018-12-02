@@ -28,23 +28,28 @@
 <h4>These pages will give you a brief introduction to what we do. Should you wish to know more then why not get in touch with us.</h4>
 </td>
 <td align="left" valign="top" width="300px" style="background:#FFFFFF; border:none;">
-  <p class="sml"><strong>Sunday:</strong><br />
-  &bull;&nbsp;Morning Service - 10.30am<br />
-  &bull;&nbsp;Evening Service - 6.00pm</p>
-	
-  <p class="sml"><strong>Wednesday:</strong><br />
-    &bull;&nbsp;9.30 am Roundabout  Parent, Baby and Toddler Group<br />
-    &bull;&nbsp;9.30 am Children and Toddler Clothing Exchange<br />
-    &bull;&nbsp;10.30 am Bible Study
-</p>
-	
-  <p class="sml"><strong>Thursday:</strong><br />
-	&bull;&nbsp;Church open for prayer (10.00am - 2.00 pm)<br />
+		<p class="sml"><strong>Sunday:</strong><br />
+				&bull;&nbsp;Morning Service - 10.30am<br />
+				&bull;&nbsp;Evening Service - 6.00pm</p>
+		
+		<p class="sml"><strong>Tuesday:</strong><br />
+				&bull;&nbsp;10.30 am Prayer Time
+		</p>
+
+		<p class="sml"><strong>Wednesday:</strong><br />
+				&bull;&nbsp;9.30 am Roundabout  Parent, Baby and Toddler Group<br />
+				&bull;&nbsp;9.30 am Children and Toddler Clothing Exchange<br />
+				&bull;&nbsp;10.30 am Bible Study
+		</p>
+		
+		<p class="sml"><strong>Thursday:</strong><br />
+				<!-- &bull;&nbsp;Church open for prayer (10.00am - 2.00 pm)<br /> -->
 	&bull;&nbsp;Sunshine Hour - 2.30 pm</p>
 	
-  <p class="sml"><strong>Friday:</strong><br />
-	&bull;&nbsp;Friday Food & Fellowship (10.00 am - 12.00 pm)<br />
-  &bull;&nbsp;Pause for Thought - 11.00 am</p> </td>
+		<p class="sml"><strong>Friday:</strong><br />
+				&bull;&nbsp;Friday Food & Fellowship (10.00 am - 12.00 pm)<!-- <br /> -->
+				<!-- &bull;&nbsp;Pause for Thought - 11.00 am -->
+		</p> </td>
   </tr>
 </table>
 
