@@ -9,7 +9,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 
 //**************************************************************************
-// functions in js ... 
+// functions in js ...
 // https://www.w3schools.com/js/js_function_invocation.asp
 
 //**************************************************************************
@@ -24,6 +24,11 @@
 // let user choose formatting options
 // let user choose whether to include/exclude event descriptions
 
+//**************************************************************************
+// which calendar to operate on ...
+// look for code of the form ...
+// var aEvents = CalendarApp.getDefaultCalendar().getEvents(myODateStart, myODateEnd);
+
 // globals
 var gODateStart           = new Date();
 var gODateEnd             = new Date();
@@ -31,16 +36,16 @@ var gStrFileName          = "calendarevents";
 var gAMonths              = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var gADays                = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var gOIncludeEventDetails = new Boolean(false);
-//var gStrFileFormat        = "with_headings"; 
+//var gStrFileFormat        = "with_headings";
 var gStrFileFormat        = "without_headings";
 var gStrDocURL            = "unitialised";
 var gStrTargetFolderName  = "sharedbylink";
- 
+
 // functions
 function setGlobalStartAndEndDateObjsWithHardcodedRule(mygODateStart, mygODateEnd)
 {
   var ODateNow   = new Date();
-  var iDayNow    = ODateNow.getDay(); // 0=sun,1=mon,2=tue,etc 
+  var iDayNow    = ODateNow.getDay(); // 0=sun,1=mon,2=tue,etc
 
   Logger.log("Month now is:     " + gAMonths[ODateNow.getMonth()] + "\n");
   Logger.log("Day now is:       " + gADays[ODateNow.getDay()]     + "\n");
@@ -52,7 +57,7 @@ function setGlobalStartAndEndDateObjsWithHardcodedRule(mygODateStart, mygODateEn
 
   // set date start to the sunday following date now
   // set date end to the sunday following date start
-  // 0=sun,1=mon,2=tue,etc 
+  // 0=sun,1=mon,2=tue,etc
   if (0 == iDayNow){
     mygODateStart.setDate(ODateNow.getDate() + 7);
     mygODateEnd.setDate(ODateNow.getDate() + 14);
@@ -84,18 +89,18 @@ function setGlobalStartAndEndDateObjsWithHardcodedRule(mygODateStart, mygODateEn
   } else {
     // something gone wrong
   }
-  
+
   // set hours, mins, secs of start/end dates to capture events at any times on those days
   mygODateStart.setHours(0);
   mygODateStart.setMinutes(0);
   mygODateEnd.setHours(23);
   mygODateEnd.setMinutes(59);
-   
+
   // read somewhere that toDateString() uses timezone that browser is set to by default
   // so code doesn't have to fiddle with adjustments such as "GMT" and "GMT + 1"
   Logger.log("Day now is: " + gADays[ODateNow.getDay()] + "\n");
   Logger.log("Day now is: " + ODateNow.toDateString() + "\n");
-                
+
   Logger.log("GetTime() now is:   " + ODateNow.getTime()     + "\n");  // though see details about getTime() and common misunderstanding of
                                                                       // date object .. https://developers.google.com/google-ads/scripts/docs/features/dates
   Logger.log("GetTime() start is: " + mygODateStart.getTime() + "\n");  // though see details about getTime() and common misunderstanding of
@@ -120,7 +125,7 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
   //
   // delete any pre-existing documents called gStrFileName
   deleteFilesByName(myStrFileName);
-     
+
   // Create and open a document in folder 'gStrTargetFolderName', so that all with link can see it.
   var doc                = DocumentApp.create(myStrFileName); // https://developers.google.com/apps-script/reference/document/
   var strFileAndDocID    = doc.getId();
@@ -132,34 +137,49 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
   }
 
   //.setSharing(DriveApp.Access.ANYONE, DriveApp.Permission.EDIT); //https://developers.google.com/apps-script/reference/drive/file#setSharing(Access,Permission)
-  
-  
+
+
 
   var body = doc.getBody(); //https://developers.google.com/apps-script/reference/document/body
 
   Logger.log('Document URL: ' + doc.getUrl());
   gStrDocURL = doc.getUrl();
-  
+
   // portrait or landscape? - https://productforums.google.com/forum/#!topic/docs/HuwBipQ6cBY
   // Rotate to landscape, A4 size
   // doc.getBody().setPageHeight(595.276).setPageWidth(841.89);
-  // Rotate to portrait, A4 size 
+  // Rotate to portrait, A4 size
   // doc.getBody().setPageHeight(841.89).setPageWidth(595.276);
-  
+
   // set to portrait mode ...
   body.setPageHeight(841.89).setPageWidth(595.276);
-    
-  var aEvents = CalendarApp.getDefaultCalendar().getEvents(myODateStart, myODateEnd);
+
+
+  // This is where the target calendar is selected
+  // use getDefaultCalendar() for default. Any other, use one of the GetCalendar**() functions at
+  // https://developers.google.com/apps-script/reference/calendar/calendar-app
+  //
+
+  // Either ...
+  // Use default calendar
+  // var aEvents = CalendarApp.getDefaultCalendar().getEvents(myODateStart, myODateEnd);
+
+  // Or ...
+  // Use specificly identified, non-default calendar.
+  // Use same calender as is embedded in website. Get it's id from calendar settings. Currently named
+  // 'publicly visible calendar for everything' but that mighht change as it's a bit long!
+  var aEvents = CalendarApp.getCalendarById('b8l05fgnou2004p3rhfvjjlurg@group.calendar.google.com').getEvents(myODateStart, myODateEnd);
+
   Logger.log('Number of events: ' + aEvents.length);
-  
+
   // iterate through events, noting day, title and description of each
   if (1 <= aEvents.length)
   {
     var index        = 0;
     var strTargetDay = aEvents[index].getStartTime().toDateString();
-    
+
     Logger.log(strTargetDay);
-    
+
     var oElementParagraph = body.appendParagraph(strTargetDay); // https://developers.google.com/apps-script/reference/document/paragraph
 
     // apply formatting
@@ -171,8 +191,8 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
     {
       oElementParagraph.setFontSize(10);
       oElementParagraph.setBold(true);
-    } // END apply formatting  
-     
+    } // END apply formatting
+
     while(index < aEvents.length)
     {
       if (aEvents[index].getStartTime().toDateString() != strTargetDay)
@@ -181,7 +201,7 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
         Logger.log(strTargetDay);
         //Element = body.appendParagraph(""); // create empty newline
         oElementParagraph = body.appendParagraph(strTargetDay);
-                
+
         // apply formatting
         if ("with_headings" == gStrFileFormat)
         {
@@ -191,7 +211,7 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
         {
           oElementParagraph.setFontSize(10);
           oElementParagraph.setBold(true);
-        } // END apply formatting  
+        } // END apply formatting
 
       }
 
@@ -206,7 +226,7 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
         Logger.log(aEvents[index].getStartTime().getHours() + ":" + + aEvents[index].getStartTime().getMinutes() + " " + aEvents[index].getTitle());
         oElementParagraph = body.appendParagraph(aEvents[index].getStartTime().getHours() + ":" + + aEvents[index].getStartTime().getMinutes() + " " + aEvents[index].getTitle());
       }
-      
+
       // apply formatting
       if ("with_headings" == gStrFileFormat)
       {
@@ -217,8 +237,8 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
         oElementParagraph.setFontSize(10);
         oElementParagraph.setBold(false);
         oElementParagraph.setItalic(true);
-      } // END apply formatting  
-    
+      } // END apply formatting
+
       // event description
       if (gOIncludeEventDetails)
       {
@@ -231,7 +251,7 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
         {
           oElementParagraph = body.appendParagraph(aEvents[index].getDescription() + "\n");
         }
-        
+
         // apply formatting
         if ("with_headings" == gStrFileFormat)
         {
@@ -244,10 +264,10 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
           oElementParagraph.setFontSize(8);
           oElementParagraph.setBold(false);
           oElementParagraph.setItalic(false);
-        } // END apply formatting  
-        
+        } // END apply formatting
+
       } // END IF include event details
-      
+
       index++;
     }
   }
@@ -255,7 +275,7 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
   {
     Logger.log("no events in date range");
   }
-  
+
  return;
 }
 
@@ -265,21 +285,21 @@ function writeEventsToFile(myStrFileName, myODateStart, myODateEnd, gOIncludeEve
 function myMain(myOStartEndDates)
 {
   //return HtmlService.createTemplateFromFile('index').evaluate().setSandboxMode(HtmlService.SandboxMode.NATIVE);
-  
+
   //setGlobalStartAndEndDateObjsWithHardcodedRule(gODateStart, gODateEnd);
   setGlobalStartAndEndDateObjsWithUserGenerateRange(gODateStart, gODateEnd, myOStartEndDates);
- 
+
   Logger.log("Day xxxxxxxxx end is:   " + gADays[gODateEnd.getDay()]   + " = " + gODateEnd.toDateString()   + "\n");
   Logger.log("Day xxxxxxxxx end is:   " + gADays[gODateEnd.getDay()]   + " = " + gODateEnd.toDateString()   + "\n");
 
   Logger.log("Day xxxxxxxxx start is: " + gADays[gODateStart.getDay()] + " = " + gODateStart.toDateString() + "\n");
   Logger.log("Day xxxxxxxxxx end is:   " + gADays[gODateEnd.getDay()]   + " = " + gODateEnd.toDateString()   + "\n");
-  
+
   //find all events in range, write details to document
   //writeEventsToFileFormattedFontSizes(gStrFileName, gODateStart, gODateEnd, gOIncludeEventDetails);
   //writeEventsToFileFormattedWithHeadings(gStrFileName, gODateStart, gODateEnd, gOIncludeEventDetails);
   writeEventsToFile(gStrFileName, gODateStart, gODateEnd, gOIncludeEventDetails, gStrFileFormat);
-  
+
   return;
 }
 
@@ -288,7 +308,7 @@ function SetStartEndDateObjects(myOStartEndDates, myStrDateRange)
 {
   // 012345678901234567890123456789
   // 13/12/2108 to 14/12/2018
-  
+
   myOStartEndDates['startDay']   = myStrDateRange.substring(0,2); // start (incl), end (excl)
   myOStartEndDates['startMonth'] = myStrDateRange.substring(3,5);
   myOStartEndDates['startYear']  = myStrDateRange.substring(6,10);
@@ -304,7 +324,7 @@ function setGlobalStartAndEndDateObjsWithUserGenerateRange(mygODateStart, mygODa
   // https://www.w3schools.com/jsref/jsref_setfullyear.asp (days are 1-31, months are 0-11)
   mygODateStart.setFullYear(myOStartEndDates['startYear'], myOStartEndDates['startMonth'] - 1, myOStartEndDates['startDay']);
   mygODateEnd.setFullYear(myOStartEndDates['endYear'], myOStartEndDates['endMonth'] - 1, myOStartEndDates['endDay']);
-  
+
   // Adjust hours/mins to include all of start/end days. Without this, hours and mins will be set to values matching
   // the time at which new Date was called.
   mygODateStart.setHours(0); // 0-23
@@ -326,27 +346,27 @@ function setGlobalStartAndEndDateObjsWithUserGenerateRange(mygODateStart, mygODa
 // Anonymous does not mean that it doesn't require the user to be logged in.
 function doGet(e)
 {
-  
+
   var key = "AIzaSyAfPmFgRFKwVwKLTX_v6n5oSlRqVoxxbJ8"; // https://console.cloud.google.com/apis/credentials?project=project-id-7952616239316628927
-  
-  var strDateRange = e.parameter.daterange;  
+
+  var strDateRange = e.parameter.daterange;
   var oStartEndDates = new Object;
   SetStartEndDateObjects(oStartEndDates, strDateRange);
- 
+
   // https://stackoverflow.com/questions/22123371/date-picker-in-htmlservice-google-apps-script
 
   myMain(oStartEndDates);
-  
+
   var output = HtmlService.createHtmlOutput('<p>Processing finished.');
   output.append('<p>Events in date range: ' + strDateRange +' written to <a href="' + gStrDocURL + '">Document URL</a>');
   output.append('<p>Once opened, the document can be downloaded using <em>File -> Download as</em>');
   // 31/10/2018 to 30/11/2018
-  
+
   output.append("<p>Arguments check");
   output.append("<p>Start date: " +  oStartEndDates['startDay'] + " " + oStartEndDates['startMonth'] + " " + oStartEndDates['startYear']);
   output.append("<p>End date:   " + oStartEndDates['endDay']    + " " + oStartEndDates['endMonth']   + " " + oStartEndDates['endYear']);
   //output.append('<p>Document containing events: <a href="' + gStrDocURL + '">Document URL</a> Once opened, document can be downloaded using <em>File -> Download as</em>');
-  
+
   return output;
 }
 
@@ -362,7 +382,7 @@ function myTest()
 
 //#####################################
 /*
-function doGet(request) 
+function doGet(request)
 {
   var key = "AIzaSyBV5euqTkCVmS37KUotLzHhJ5KbFhQntNg"; // https://console.cloud.google.com/apis/credentials?project=project-id-7952616239316628927
   return HtmlService.createTemplateFromFile('Page')
@@ -372,7 +392,7 @@ function doGet(request)
 
 
 
-function include(filename) 
+function include(filename)
 {
   return HtmlService.createHtmlOutputFromFile(filename)
       .getContent();
@@ -399,10 +419,10 @@ function TestGetTime()
   Utilities.sleep(500);  // ms. Here to establish that getTime() will return different values for date1 and date2
   var date2 = new Date();
 
-  Logger.log("GetTime() date1 is:   " + date1.getTime() + "\n"); 
-  Logger.log("GetTime() date2 is:   " + date2.getTime() + "\n"); 
+  Logger.log("GetTime() date1 is:   " + date1.getTime() + "\n");
+  Logger.log("GetTime() date2 is:   " + date2.getTime() + "\n");
   Logger.log(date1.getTime() == date2.getTime());
-  
+
   return;
 }
 
@@ -421,22 +441,22 @@ function myFunction() {
   Logger.log(formattedDate);
 
   Logger.log(new Date().toISOString(), "%s\n");
-  
+
   var startDate = new Date();
   var endDate = new Date();
   //Logger.log("%s +++ %s\n", startDate.day);
-  
-  
+
+
   // Determines how many events are happening today and contain the term "meeting".
   var today = new Date();
   var today = new Date(2018, 10, 21, 00, 00, 00, 00);
-  
+
   var events = CalendarApp.getDefaultCalendar().getEventsForDay(today, {search: 'meeting'});
   Logger.log('Number of events: ' + events.length);
 
   var events = CalendarApp.getDefaultCalendar().getEventsForDay(today);
   Logger.log('Number of events: ' + events.length);
-  
+
   var day = new Date(2018, 10, 20, 00, 00, 00, 00);
   var events = CalendarApp.getDefaultCalendar().getEventsForDay(day);
   Logger.log('Number of events:Sat 20 ' + events.length);
@@ -482,7 +502,5 @@ function myFunction() {
   //var events = CalendarApp.getDefaultCalendar().getEventsForDay(day);
   //Logger.log("Number of events:Tue %d \nxxx\n" + events.length);
 
-  
-}
 
-              
+}
