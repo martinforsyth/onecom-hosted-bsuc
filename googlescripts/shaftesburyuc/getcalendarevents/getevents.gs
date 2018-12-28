@@ -29,6 +29,10 @@
 // look for code of the form ...
 // var aEvents = CalendarApp.getDefaultCalendar().getEvents(myODateStart, myODateEnd);
 
+//**************************************************************************
+// TODO
+// add search functionality using https://developers.google.com/apps-script/reference/calendar/calendar#geteventsstarttime-endtime-options
+
 // globals
 var gODateStart           = new Date();
 var gODateEnd             = new Date();
